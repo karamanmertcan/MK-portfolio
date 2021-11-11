@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 import React, { ReactElement } from 'react';
+import Link from 'next/link';
 import { Box, Heading, Text, Button } from '@chakra-ui/react';
 
 function About(): ReactElement {
@@ -21,11 +22,12 @@ function About(): ReactElement {
         company as a fullstack developer right now. I'm trying to improve myself everyday. I'm
         trying to learn new technologies about to web development.
       </Text>
-      <Button mt={5} w='100%' colorScheme='blue'>
-        <a href='/MertcanKaramanCVNewVersion.pdf' download>
-          My Portfolio
-        </a>
-      </Button>
+      <a href='/MertcanKaramanCVNewVersion.pdf' target='_blank'>
+        <Button colorScheme='blue' w='100%'>
+          <i className='fas fa-download' />
+          My Resume
+        </Button>
+      </a>
     </Box>
   );
 }
