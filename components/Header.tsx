@@ -36,22 +36,22 @@ const Header = () => {
                 </Box>
               )}
 
-              {router.pathname.split('/')[1] === 'posts' ? (
+              {router.pathname.split('/')[1] === 'blog' ? (
                 <motion.div
                   initial={{ y: 0, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: 10, opacity: 0 }}
                   transition={{ ease: 'easeIn', duration: 0.2 }}>
                   <Box ml={5} bg={`${router.pathname.split('/')[1] ? '#b3e5fc' : null}`} p={2}>
-                    <Link href='/Posts'>
-                      <a>Posts</a>
+                    <Link href='/blog'>
+                      <a>Blog</a>
                     </Link>
                   </Box>
                 </motion.div>
               ) : (
                 <Box ml={5} p={2}>
-                  <Link href='/posts'>
-                    <a>Posts</a>
+                  <Link href='/blog'>
+                    <a>Blog</a>
                   </Link>
                 </Box>
               )}
