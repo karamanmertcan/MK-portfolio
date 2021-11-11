@@ -85,19 +85,14 @@ const Header = () => {
           <Box ml={2} display={{ base: 'inline-block', md: 'none' }} bg='black'>
             <Menu isLazy id='navbar-menu'>
               <MenuButton
-                _hover={{ bg: 'blue.800' }}
                 as={IconButton}
                 icon={<HamburgerIcon />}
                 variant='primary'
                 aria-label='Options'
               />
               <MenuList bg='black'>
-                <MenuItem onClick={() => router.push('/works')} _hover={{ bg: '#B3E5FC' }}>
-                  Works
-                </MenuItem>
-                <MenuItem onClick={() => router.push('/blog')} _hover={{ bg: '#B3E5FC' }}>
-                  Blog
-                </MenuItem>
+                <MenuItem onClick={() => router.push('/works')}>Works</MenuItem>
+                <MenuItem onClick={() => router.push('/blog')}>Blog</MenuItem>
               </MenuList>
             </Menu>
           </Box>
