@@ -52,7 +52,7 @@ const Home: NextPage = (): ReactElement => {
                   mt={{ base: '20px' }}
                   size='2xl'
                   name='Mertcan Karaman'
-                  src='https://www.mertcankaraman.com/_next/image?url=%2Fimages%2Fmert.jpg&w=640&q=75'
+                  src='/linkedinpp.png'
                 />{' '}
               </Flex>
             </Box>

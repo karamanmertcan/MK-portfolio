@@ -54,11 +54,7 @@ const BlogPage = (props: Props) => {
           </Box>
           <Box w='100%' mt={5}>
             <Flex align='center'>
-              <Avatar
-                size='md'
-                name='Mertcan Karaman'
-                src='https://www.mertcankaraman.com/_next/image?url=%2Fimages%2Fmert.jpg&w=640&q=75'
-              />
+              <Avatar size='md' name='Mertcan Karaman' src='/linkedinpp.png' />
               <Text ml={3} style={{ fontWeight: 'bold' }}>
                 {props.author}
               </Text>
