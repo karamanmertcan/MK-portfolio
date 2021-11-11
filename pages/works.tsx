@@ -3,7 +3,7 @@ import { Box, Container, Heading } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
 import PostItem from '../components/PostItem';
-import sanityClient from '../client';
+import { getClient } from '../client';
 
 interface Props {
   data: [];
@@ -58,7 +58,7 @@ function Works({ data }: Props): ReactElement {
 }
 
 export async function getServerSideProps() {
-  const data = await sanityClient.fetch(`*[_type == "post"]{
+  const data = await getClient().fetch(`*[_type == "post"]{
     title,
     excerpt,
     date,

@@ -2,7 +2,8 @@ import React from 'react';
 import BlockContent from '@sanity/block-content-to-react';
 import { Box, Container, Heading, Button, Avatar, Flex, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import sanityClient from '../../client';
+import { groq } from 'next-sanity';
+import { getClient } from '../../client';
 import { serializers } from '../../lib/serializers';
 import Layout from '../../components/Layout';
 import { useRouter } from 'next/router';
@@ -33,17 +34,17 @@ const query = `*[_type == "blog" && slug.current == $slug][0]{
     }
   }`;
 
-const BlogPage = (props: Props) => {
+const BlogPage = (currentPost: any) => {
   const router = useRouter();
 
-  const minRead = Math.ceil(props.body.length / 20);
+  const minRead = Math.ceil(currentPost.currentPost.body.length / 20);
 
   return (
     <Layout>
       <Container>
         <Box pt={40} h='auto'>
           <Heading as='h3' size='lg' textAlign='center' color='#008CC9'>
-            {props.title}
+            {currentPost.currentPost.title}
           </Heading>
           <Box mt={3}>
             <Button
@@ -56,9 +57,9 @@ const BlogPage = (props: Props) => {
             <Flex align='center'>
               <Avatar size='md' name='Mertcan Karaman' src='/linkedinpp.png' />
               <Text ml={3} style={{ fontWeight: 'bold' }}>
-                {props.author}
+                {currentPost.currentPost.author}
               </Text>
-              <Text ml={3}>{props.date}</Text>
+              <Text ml={3}>{currentPost.currentPost.date}</Text>
               <Text color='#008CC9' ml={3}>
                 {minRead} min read
               </Text>
@@ -71,7 +72,11 @@ const BlogPage = (props: Props) => {
               exit={{ y: -200, opacity: 0 }}
               transition={{ ease: 'easeIn', duration: 0.8 }}>
               <Box w='100%' h='300px'>
-                <BlockContent blocks={props.body} dataset='production' serializers={serializers} />
+                <BlockContent
+                  blocks={currentPost.currentPost.body}
+                  dataset='production'
+                  serializers={serializers}
+                />
               </Box>
             </motion.div>
           </Box>
@@ -81,10 +86,27 @@ const BlogPage = (props: Props) => {
   );
 };
 
-BlogPage.getInitialProps = async function (context: any) {
-  // It's important to default the slug so that it doesn't return "undefined"
-  const { slug = '' } = context.query;
-  return await sanityClient.fetch(query, { slug });
+export async function getStaticProps({ params, preview = false }) {
+  const currentPost = await getClient(preview).fetch(query, {
+    slug: params.slug
+  });
+
+  return {
+    props: {
+      currentPost
+    }
+  };
+}
+
+export const getStaticPaths = async () => {
+  const pages = await getClient().fetch(
+    groq`*[_type == "blog" && defined(slug.current)][].slug.current`
+  );
+
+  return {
+    paths: pages.map((slug: any) => `/blog/${slug}`),
+    fallback: true
+  };
 };
 
 export default BlogPage;

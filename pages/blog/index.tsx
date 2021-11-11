@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Container, Heading } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
-import sanityClient from '../../client';
+import { getClient } from '../../client';
 import BlogItem from '../../components/BlogItem';
 import Layout from '../../components/Layout';
 
@@ -81,7 +81,7 @@ const BlogPage = ({ data }: Props) => {
 };
 
 export async function getStaticProps() {
-  const data = await sanityClient.fetch(groq);
+  const data = await getClient().fetch(groq);
   return {
     props: { data },
     revalidate: 1
