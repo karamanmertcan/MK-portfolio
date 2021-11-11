@@ -8,14 +8,7 @@ import { serializers } from '../../lib/serializers';
 import Layout from '../../components/Layout';
 import { useRouter } from 'next/router';
 
-interface Props {
-  title: String;
-  excerpt: String;
-  date: String;
-  author: String;
-  mainImage: String;
-  body: any;
-}
+interface Props {}
 
 const query = `*[_type == "blog" && slug.current == $slug][0]{
     title,
@@ -34,17 +27,19 @@ const query = `*[_type == "blog" && slug.current == $slug][0]{
     }
   }`;
 
-const BlogPage = (currentPost: any) => {
+const BlogPage: React.FC<{
+  currentPost: any;
+}> = ({ currentPost }) => {
   const router = useRouter();
 
-  const minRead = Math.ceil(currentPost.currentPost.body.length / 20);
+  const minRead = Math.ceil(currentPost?.body.length / 20);
 
   return (
     <Layout>
       <Container>
         <Box pt={40} h='auto'>
           <Heading as='h3' size='lg' textAlign='center' color='#008CC9'>
-            {currentPost.currentPost.title}
+            {currentPost?.title}
           </Heading>
           <Box mt={3}>
             <Button
@@ -57,9 +52,9 @@ const BlogPage = (currentPost: any) => {
             <Flex align='center'>
               <Avatar size='md' name='Mertcan Karaman' src='/linkedinpp.png' />
               <Text ml={3} style={{ fontWeight: 'bold' }}>
-                {currentPost.currentPost.author}
+                {currentPost?.author}
               </Text>
-              <Text ml={3}>{currentPost.currentPost.date}</Text>
+              <Text ml={3}>{currentPost?.date}</Text>
               <Text color='#008CC9' ml={3}>
                 {minRead} min read
               </Text>
@@ -73,7 +68,7 @@ const BlogPage = (currentPost: any) => {
               transition={{ ease: 'easeIn', duration: 0.8 }}>
               <Box w='100%' h='300px'>
                 <BlockContent
-                  blocks={currentPost.currentPost.body}
+                  blocks={currentPost?.body}
                   dataset='production'
                   serializers={serializers}
                 />
