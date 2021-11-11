@@ -9,6 +9,20 @@ interface Props {
   data: [];
 }
 
+interface Blog {
+  title: String;
+  excerpt: String;
+  date: String;
+  slug: String;
+  author: String;
+  mainImage: {
+    asset: {
+      url: String;
+    };
+  };
+  body: any;
+}
+
 const groq = `*[_type == "blog"]{
     title,
     excerpt,
@@ -27,7 +41,6 @@ const groq = `*[_type == "blog"]{
   }`;
 
 const BlogPage = ({ data }: Props) => {
-  console.log(data);
   return (
     <Layout>
       <Container>
@@ -47,7 +60,7 @@ const BlogPage = ({ data }: Props) => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -200, opacity: 0 }}
               transition={{ ease: 'easeIn', duration: 0.8 }}>
-              {data.map((item: any, index) => (
+              {data.map((item: Blog, index) => (
                 <BlogItem
                   key={index}
                   title={item.title}

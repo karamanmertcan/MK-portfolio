@@ -10,7 +10,17 @@ interface Props {
   slug: String;
 }
 
-const PostItem: React.FC<Props> = (props): JSX.Element => {
+interface Blog {
+  title: String;
+  excerpt: String;
+  date: String;
+  slug: String;
+  author: String;
+  mainImage: String;
+  body: any;
+}
+
+const PostItem: React.FC<Blog> = (props): JSX.Element => {
   const router = useRouter();
   return (
     <Box

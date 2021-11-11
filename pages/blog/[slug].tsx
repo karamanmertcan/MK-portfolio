@@ -1,10 +1,10 @@
 import React from 'react';
+import BlockContent from '@sanity/block-content-to-react';
 import { Box, Container, Heading, Button, Avatar, Flex, Text } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import sanityClient from '../../client';
 import { serializers } from '../../lib/serializers';
 import Layout from '../../components/Layout';
-import BlockContent from '@sanity/block-content-to-react';
 import { useRouter } from 'next/router';
 
 interface Props {
@@ -38,12 +38,11 @@ const BlogPage = (props: Props) => {
 
   const minRead = Math.ceil(props.body.length / 20);
 
-  console.log(minRead);
   return (
     <Layout>
       <Container>
         <Box pt={40} h='auto'>
-          <Heading as='h3' size='lg' align='center' color='#008CC9'>
+          <Heading as='h3' size='lg' textAlign='center' color='#008CC9'>
             {props.title}
           </Heading>
           <Box mt={3}>

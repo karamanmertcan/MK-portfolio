@@ -14,7 +14,7 @@ const Header = () => {
           <Box>
             <Flex align='center' color={useColorModeValue('black', 'white')}>
               <Link href='/'>
-                <Text style={{ fontWeight: 'bold', cursor: 'pointer' }}>Mertcankaraman.</Text>
+                <Text style={{ fontWeight: 'bold', cursor: 'pointer' }}>mertcankaraman.</Text>
               </Link>
               {router.pathname.split('/')[1] === 'works' ? (
                 <motion.div
