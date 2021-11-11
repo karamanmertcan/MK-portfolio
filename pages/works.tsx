@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
-import { Box, Container, Image, Text, Heading, Button, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, Heading } from '@chakra-ui/react';
+import { motion } from 'framer-motion';
 import Layout from '../components/Layout';
 import PostItem from '../components/PostItem';
 import sanityClient from '../client';
@@ -34,15 +35,21 @@ function Works({ data }: Props): ReactElement {
             Works
           </Heading>
           <Box w='100%' height='auto' mt={10}>
-            {data.map((post: Post, index) => (
-              <PostItem
-                key={index}
-                title={post.title}
-                excerpt={post.excerpt}
-                mainImage={post.mainImage.asset.url}
-                target={post.target}
-              />
-            ))}
+            <motion.div
+              initial={{ y: 200, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -200, opacity: 0 }}
+              transition={{ ease: 'easeIn', duration: 0.8 }}>
+              {data.map((post: Post, index) => (
+                <PostItem
+                  key={index}
+                  title={post.title}
+                  excerpt={post.excerpt}
+                  mainImage={post.mainImage.asset.url}
+                  target={post.target}
+                />
+              ))}
+            </motion.div>
           </Box>
         </Box>
       </Container>

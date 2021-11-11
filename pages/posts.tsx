@@ -4,7 +4,7 @@ import Layout from '../components/Layout';
 interface Props {}
 
 function Posts({}: Props): ReactElement {
-  return <Layout>posts</Layout>;
+  return <Layout></Layout>;
 }
 
 export default Posts;

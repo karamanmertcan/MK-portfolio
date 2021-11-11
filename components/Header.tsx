@@ -7,14 +7,15 @@ import Link from 'next/link';
 
 const Header = () => {
   const router = useRouter();
-  // console.log(router.pathname.split('/')[1]);
   return (
     <Box w='100%' pos='fixed' p={4} color='white' bg={useColorModeValue('#ffffff40', '#20202380')}>
       <Container maxW='container.lg'>
         <Flex align='center'>
           <Box>
             <Flex align='center' color={useColorModeValue('black', 'white')}>
-              <Text style={{ fontWeight: 'bold' }}>Mertcankaraman.</Text>
+              <Link href='/'>
+                <Text style={{ fontWeight: 'bold', cursor: 'pointer' }}>Mertcankaraman.</Text>
+              </Link>
               {router.pathname.split('/')[1] === 'works' ? (
                 <motion.div
                   initial={{ y: 0, opacity: 0 }}

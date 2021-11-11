@@ -15,9 +15,11 @@ function About(): ReactElement {
         About
       </Heading>
       <Text mt={5}>
-        Hi. My name is Mert and I'm a fullstack developer from Turkey. I've graduaded Sakarya
-        University Computer Science in 2021. My favorite technologies right now are: React.js,
-        Typescript, GraphQL, Node.js, and MongoDB. My English level is B2. Are you interested in me?
+        Hi. My name is Mertcan and I'm a fullstack developer and computer engineering student from
+        Turkey. I'm studying at Kadir Has University. My favorite technologies right now are:
+        React.js, Next.js, Typescript, Javascript, Node.js, and MongoDB. I'm working at LetWOM
+        company as a fullstack developer right now. I'm trying to improve myself everyday. I'm
+        trying to learn new technologies about to web development.
       </Text>
       <Button mt={5} w='100%' colorScheme='blue'>
         <a href='/MertcanKaramanCVNewVersion.pdf' download>
