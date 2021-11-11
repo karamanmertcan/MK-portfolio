@@ -86,7 +86,7 @@ const BlogPage = (currentPost: any) => {
   );
 };
 
-export async function getStaticProps({ params, preview = false }) {
+export async function getStaticProps({ params, preview = false }: any) {
   const currentPost = await getClient(preview).fetch(query, {
     slug: params.slug
   });
